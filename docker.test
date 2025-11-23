@@ -1,0 +1,35 @@
+# 1. Old, unpinned base image (outdated + unknown digest)
+FROM ubuntu:18.04
+
+# 2. Disable interactive prompts, but also leak env var
+ENV DEBIAN_FRONTEND=noninteractive \
+    APP_ENV=production \
+    APP_SECRET_KEY="super-secret-hardcoded-key"
+
+# 3. Install packages without verification or cleanup
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        wget \
+        python3 \
+        python3-pip \
+        openssh-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# 4. Download and run a script over HTTP (no TLS, no checksum)
+RUN curl -s http://example.com/install.sh | bash
+
+# 5. Copy app with world-readable permissions
+WORKDIR /app
+COPY . /app
+RUN chmod -R 777 /app
+
+# 6. Install Python deps with no version pinning
+RUN pip3 install -r requirements.txt
+
+# 7. Expose sensitive port (and no healthcheck)
+EXPOSE 5000
+
+# 8. Run as root (default) and start app in an unsafe way
+CMD ["python3", "app.py"]
+
