@@ -37,6 +37,22 @@ FAKE_JWT = (
     "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
 )
 
+# AWS
+AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
+AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
+# GitHub (pattern valid)
+GITHUB_TOKEN = "ghp_1234567890abcdefghijklmnopqrstuvwxyZ"
+
+# Slack Bot Token
+SLACK_BOT_TOKEN = "xoxb-123456789012-1234567890123-abcdefghijklmnopqrstuvwxyz"
+
+# Stripe (live key pattern)
+STRIPE_LIVE_KEY = "sk_live_51H8EXAMPLE1234567890abcdefghijklmn"
+
+# High-entropy test key (generic)
+TEST_SECRET = "SDFJh1239sjdfnSDF9832njsdfn98SDFNj"
+
 
 def main():
     # This is just so the file is runnable and looks "normal"
